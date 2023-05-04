@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="es">    
+    <head>
+        <meta charset="utf-8">
+        <title>Encriptador</title>
+        <link rel="stylesheet" href="../../HTML5 y CSS3/Parte 2 Posicionamiento, listas y navegación/reset.css">
+        <link rel="stylesheet" href="encriptador.css">
+    </head>
+    
+    <body class="pantalla">
+        <input type="text" placeholder="Ingrese el texto aqui..." id="texto">
+        <button id="encriptar" type="submit">Encriptar</button>
+        <button id="desencriptar" type="submit">Desencriptar</button>
+        <textarea id="solucion" type="text" disabled></textarea>
+    </body>
+
+    <script>
+        var botonEnc=document.getElementById("encriptar");
+        var botonDesenc=document.getElementById("desencriptar");
+        var solucion=document.getElementById("solucion");
+        function encriptar(){
+            solucion.value="";
+            var texto=document.querySelector("input").value;
+            var arr=Array.from(texto);
+            var encriptado="";
+            for(var i=0;i<arr.length;i++){
+                    if(arr[i]=="a"){
+                        arr[i]="ai";
+                    }
+                    else if(arr[i]=="e"){
+                        arr[i]="enter";
+                    }
+                    else if(arr[i]=="i"){
+                        arr[i]="imes";
+                    }
+                    else if(arr[i]=="o"){
+                        arr[i]="ober";
+                    }
+                    else if(arr[i]=="u"){
+                        arr[i]="ufat";
+                    }
+                    encriptado+=arr[i];
+                }
+            solucion.value=encriptado;
+        }
+        function desencriptar(){
+            solucion.value="";
+            var texto=document.querySelector("input").value;
+            var arr=Array.from(texto);
+            var encriptado="";
+            for(var i=0;i<=arr.length;i++){
+                if(arr[i]=="a"&&arr[i+1]=="i"){
+                    delete(arr[i+1]);
+                }
+                if(arr[i]=="e"&&arr[i+1]=="n"&&arr[i+2]=="t"&&arr[i+3]=="e"&&arr[i+4]=="r"){
+                    delete(arr[i+1]);
+                    delete(arr[i+2]);
+                    delete(arr[i+3]);
+                    delete(arr[i+4]);
+                }
+                if(arr[i]=="i"&&arr[i+1]=="m"&&arr[i+2]=="e"&&arr[i+3]=="s"){
+                    delete(arr[i+1]);
+                    delete(arr[i+2]);
+                    delete(arr[i+3]);
+                }
+                if(arr[i]=="o"&&arr[i+1]=="b"&&arr[i+2]=="e"&&arr[i+3]=="r"){
+                    delete(arr[i+1]);
+                    delete(arr[i+2]);
+                    delete(arr[i+3]);
+                }
+                if(arr[i]=="u"&&arr[i+1]=="f"&&arr[i+2]=="a"&&arr[i+3]=="t"){
+                    delete(arr[i+1]);
+                    delete(arr[i+2]);
+                    delete(arr[i+3]);
+                }
+            }
+            arr=arr.filter(arr => arr!="undefined");
+            for(var i=0;i<arr.length;i++){
+                encriptado+=arr[i];
+            }
+            solucion.value=encriptado;
+        }
+        
+        botonEnc.onclick=encriptar;
+        botonDesenc.onclick=desencriptar;
+
+    </script>
+</html>
